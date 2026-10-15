@@ -1,0 +1,94 @@
+{
+    "project_name": "BloodMNIST Small CNN Classification",
+    "dataset": {
+        "name": "BloodMNIST",
+        "source": "MedMNIST",
+        "download_method": "MedMNIST Python API",
+        "split_policy": "Official train, validation, and test splits",
+        "image_size": [
+            28,
+            28
+        ],
+        "input_channels": 3,
+        "num_classes": 8,
+        "display_class_names": [
+            "Basophil",
+            "Eosinophil",
+            "Erythroblast",
+            "Immature granulocyte",
+            "Lymphocyte",
+            "Monocyte",
+            "Neutrophil",
+            "Platelet"
+        ]
+    },
+    "reproducibility": {
+        "random_seed": 42,
+        "deterministic_cudnn": true,
+        "cudnn_benchmark": false,
+        "python_version": "FILL_FROM_COLAB",
+        "pytorch_version": "FILL_FROM_COLAB",
+        "torchvision_version": "FILL_FROM_COLAB",
+        "medmnist_version": "FILL_FROM_COLAB",
+        "device": "FILL_FROM_COLAB"
+    },
+    "preprocessing": {
+        "normalization": "Channel-wise mean and standard deviation calculated on training images only",
+        "normalization_mean": "FILL_FROM_COLAB",
+        "normalization_std": "FILL_FROM_COLAB",
+        "training_augmentation": [
+            "RandomHorizontalFlip(p=0.5)",
+            "RandomRotation(degrees=10)"
+        ],
+        "validation_augmentation": [],
+        "test_augmentation": []
+    },
+    "model": {
+        "architecture": "SmallCNN",
+        "initialization": "Random initialization",
+        "convolution_channels": [
+            32,
+            64,
+            128
+        ],
+        "convolution_kernel_size": 3,
+        "batch_normalization": true,
+        "activation": "ReLU",
+        "pooling": "MaxPool2d(2), followed by AdaptiveAvgPool2d(1)",
+        "dropout": 0.3,
+        "output_classes": 8,
+        "pretrained_weights": false
+    },
+    "training": {
+        "loss_function": "CrossEntropyLoss",
+        "optimizer": "AdamW",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001,
+        "batch_size": 128,
+        "maximum_epochs": 30,
+        "early_stopping_patience": 7,
+        "checkpoint_selection": "Lowest validation loss",
+        "scheduler": {
+            "name": "ReduceLROnPlateau",
+            "mode": "min",
+            "factor": 0.5,
+            "patience": 2
+        }
+    },
+    "evaluation": {
+        "test_accuracy": 0.9468,
+        "macro_precision": 0.9481,
+        "macro_recall": 0.9359,
+        "macro_f1": 0.9415,
+        "weighted_f1": 0.9466,
+        "macro_roc_auc_ovr": "FILL_FROM_COLAB"
+    },
+    "artifacts": {
+        "checkpoint": "best_bloodmnist_cnn.pth",
+        "training_history": "training_history.csv",
+        "test_metrics": "test_metrics.csv",
+        "classification_report": "classification_report.csv",
+        "confusion_matrix": "confusion_matrix.csv",
+        "test_predictions": "test_predictions.csv"
+    }
+}
