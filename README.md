@@ -115,6 +115,9 @@ The following results are from the reported test evaluation of the baseline CNN.
 
 The reported test set contains 3,421 images.
 
+<img width="1141" height="886" alt="image" src="https://github.com/user-attachments/assets/8875563b-723e-4f87-9a07-4f20c46f12bf" />
+
+
 The model achieved its strongest reported F1-scores on eosinophils and platelets. Monocytes had the lowest recall (83.10%), while immature granulocytes had the lowest F1-score (87.29%). These results suggest that class-wise error analysis is important even when overall accuracy is high.
 
 
